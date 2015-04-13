@@ -4,10 +4,32 @@
     <Filter Include="Window">
       <UniqueIdentifier>{e3a8313f-f747-4873-937f-bd3077d9a98d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ray">
+      <UniqueIdentifier>{9e03cad3-5655-4612-98f5-b8833e6f82de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shape">
+      <UniqueIdentifier>{e2f4a3d7-3fc5-4803-9bd0-ce5d43700a66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{78c33e7b-1618-4cd8-9bdf-1b8f68d99b52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Ray.cpp">
+      <Filter>Ray</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -15,5 +37,17 @@
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="Global.h" />
+    <ClInclude Include="Ray.h">
+      <Filter>Ray</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Shape</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
