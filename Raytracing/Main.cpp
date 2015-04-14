@@ -4,7 +4,6 @@
 #include "Window.h"
 #include <time.h>
 #include <glm/gtc/random.hpp>
-#include <thrust/host_vector.h>
 #include <vector>
 #include "Ray.h"
 
@@ -15,7 +14,7 @@ Window gWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Raytracing");
 bool gIsRunning = false;
 point4 pixels[WINDOW_WIDTH][WINDOW_HEIGHT];
 
-thrust::host_vector<Ray> gPrimaryRays;
+std::vector<Ray> gPrimaryRays;
 //std::vector<Ray> rays;
 
 void GenPrimaryRays()
@@ -23,14 +22,14 @@ void GenPrimaryRays()
 	//Where the camera is 
 	point3 o(0.0f, 0.0f, 5.0f);
 	//place the screen on (0,0,0) facing negtive z axis
-	for (int x = 0; x < WINDOW_WIDTH; ++x)
-	{
-		for (int y = 0; y < WINDOW_HEIGHT; ++y)
-		{
-			point3 dir = glm::normalize(point3(x, y, 0.0f) - o );
-			gPrimaryRays.push_back(Ray(o, dir));
-		}
-	}
+	//for (int x = 0; x < WINDOW_WIDTH; ++x)
+	//{
+	//	for (int y = 0; y < WINDOW_HEIGHT; ++y)
+	//	{
+	//		point3 dir = glm::normalize(point3(x, y, 0.0f) - o );
+	//		gPrimaryRays.push_back(Ray(o, dir));
+	//	}
+	//}
 
 }
 

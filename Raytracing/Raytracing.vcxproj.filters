@@ -13,6 +13,15 @@
     <Filter Include="Material">
       <UniqueIdentifier>{78c33e7b-1618-4cd8-9bdf-1b8f68d99b52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{4497b8f1-eb84-4f3a-a751-660b038de0da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{b0d95c48-9716-4e87-b40a-5d9b800a1a87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{d676543e-2a0e-4a63-8b33-ae5e8e5b182d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -31,6 +40,18 @@
     <ClCompile Include="Sphere.cpp">
       <Filter>Shape</Filter>
     </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="RayCaster.cpp">
+      <Filter>Ray</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -48,6 +69,18 @@
     </ClInclude>
     <ClInclude Include="Sphere.h">
       <Filter>Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="RayCaster.h">
+      <Filter>Ray</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
