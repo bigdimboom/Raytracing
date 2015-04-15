@@ -8,7 +8,8 @@ class RayCaster
 public:
 	RayCaster(point3 camPos, point3 front, float near, float far, int width, int height);
 	~RayCaster();
-	Ray CastRayThroughPixel(int i, int j);
+	void Init();
+	Ray* CastRayThroughPixel(int i, int j);
 	Camera* GetCamera();
 private:
 	void _ConstructRays();

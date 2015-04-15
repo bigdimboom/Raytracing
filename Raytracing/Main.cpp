@@ -6,6 +6,7 @@
 #include <glm/gtc/random.hpp>
 #include <vector>
 #include "Ray.h"
+#include "Render.h"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -14,29 +15,13 @@ Window gWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Raytracing");
 bool gIsRunning = false;
 point4 pixels[WINDOW_WIDTH][WINDOW_HEIGHT];
 
-std::vector<Ray> gPrimaryRays;
-//std::vector<Ray> rays;
-
-void GenPrimaryRays()
-{
-	//Where the camera is 
-	point3 o(0.0f, 0.0f, 5.0f);
-	//place the screen on (0,0,0) facing negtive z axis
-	//for (int x = 0; x < WINDOW_WIDTH; ++x)
-	//{
-	//	for (int y = 0; y < WINDOW_HEIGHT; ++y)
-	//	{
-	//		point3 dir = glm::normalize(point3(x, y, 0.0f) - o );
-	//		gPrimaryRays.push_back(Ray(o, dir));
-	//	}
-	//}
-
-}
-
+Render gRender;
 
 void Init()
 {
-	GenPrimaryRays();
+	gRender.Init(point3(0.0f, 0.0f, 10.0f), point3(0.0f, 0.0f, -1.0f), 5.0f, 1000.0f, WINDOW_WIDTH, WINDOW_HEIGHT);
+	gRender.InitScene();
+	gRender.Generate();
 }
 
 void EventHandler(SDL_Event &e)
@@ -50,25 +35,19 @@ void EventHandler(SDL_Event &e)
 	}
 }
 
-void Render()
+void Display()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glDrawPixels(WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_FLOAT, pixels);
+	gRender.Draw();
 
 	gWindow.SwapBuffers();
 }
 
 void Update()
 {
-	//for (int i = 0; i < WINDOW_WIDTH; ++i)
-	//{
-	//	for (int j = 0; j < WINDOW_HEIGHT; ++j)
-	//	{
-	//		pixels[i][j] = point4(0.3f, 0.5f, 0.6f, 1.0f);
-	//	}
-	//}
+
 }
 
 void CleanUp()
@@ -96,7 +75,7 @@ int main(int argc, char** argv)
 	while (gIsRunning)
 	{
 		EventHandler(e);
-		Render();
+		Display();
 		Update();
 	}
 

@@ -2,7 +2,8 @@
 
 
 Shape::Shape()
-	:isLight(false), modelMat(1.0)
+	:isLight(false), modelMat(1.0f),
+	type(SHAPE_UNDEFINED)
 {
 }
 

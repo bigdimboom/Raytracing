@@ -9,8 +9,8 @@ public:
 	Scene();
 	~Scene();
 	void AddShape(Shape* shape);
-	int GetNumOfShapes() const;
-	Shape* GetShape(int idx);
+	uint GetNumOfShapes();
+	Shape* GetShape(uint idx);
 
 private:
 	std::vector<Shape*> _shapes;

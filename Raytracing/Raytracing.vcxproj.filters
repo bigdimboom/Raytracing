@@ -20,7 +20,7 @@
       <UniqueIdentifier>{b0d95c48-9716-4e87-b40a-5d9b800a1a87}</UniqueIdentifier>
     </Filter>
     <Filter Include="Render">
-      <UniqueIdentifier>{d676543e-2a0e-4a63-8b33-ae5e8e5b182d}</UniqueIdentifier>
+      <UniqueIdentifier>{2a99d076-8849-45d8-ab7c-bf9eae2fa127}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +52,9 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -81,6 +84,9 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 Plane::Plane(normal3& norm, float D)
 	:_plane(norm, D)
 {
+	Shape::type = SHAPE_PLANE;
 }
 
 Plane::Plane(point3& p0, point3& p1, point3& p2)
@@ -38,4 +39,15 @@ bool Plane::IsIntersect(Ray& ray, float& dist)
 		return dist >= 0.0f;
 	}
 	return false;
+}
+
+bool Plane::IsPointInside(point3& point)
+{
+	std::cout << "Problem?" << std::endl;
+	return false;
+}
+
+void Plane::Update()
+{
+
 }

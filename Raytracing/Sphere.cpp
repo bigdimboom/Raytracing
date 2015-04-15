@@ -5,6 +5,7 @@ Sphere::Sphere(point3 center, float radius)
 	:_center(center), _radius(radius), 
 	_radiusSq(_radius * _radius)
 {
+	Shape::type = SHAPE_SPHERE;
 }
 
 
