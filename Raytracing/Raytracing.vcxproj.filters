@@ -22,6 +22,9 @@
     <Filter Include="Render">
       <UniqueIdentifier>{2a99d076-8849-45d8-ab7c-bf9eae2fa127}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{b228917a-dbaa-4e33-81f8-5835d595b94a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -55,6 +58,9 @@
     <ClCompile Include="Render.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="MyTimer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -87,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="Render.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTimer.h">
+      <Filter>Timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

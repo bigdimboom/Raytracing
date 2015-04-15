@@ -7,6 +7,7 @@
 #include <vector>
 #include "Ray.h"
 #include "Render.h"
+#include "MyTimer.h"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -16,12 +17,21 @@ bool gIsRunning = false;
 point4 pixels[WINDOW_WIDTH][WINDOW_HEIGHT];
 
 Render gRender;
+MyTimer gTimer;
+
 
 void Init()
 {
-	gRender.Init(point3(0.0f, 0.0f, 5.0f), point3(0.0f, 0.0f, -1.0f), 5.0f, 1000.0f, WINDOW_WIDTH, WINDOW_HEIGHT);
+	gRender.Init(point3(0.0f, 0.0f, 4.0f), point3(0.0f, 0.0f, -1.0f), 5.0f, 1000.0f, WINDOW_WIDTH, WINDOW_HEIGHT);
 	gRender.InitScene();
+	
+	gTimer.Start();
 	gRender.Generate();
+	gTimer.Stop();
+
+	std::cout << gTimer.GetElapsedTime() / 1000.0f << "seconds\n";
+
+	gTimer.Reset();
 }
 
 void EventHandler(SDL_Event &e)
