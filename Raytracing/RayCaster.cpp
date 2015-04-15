@@ -68,7 +68,7 @@ Camera* RayCaster::GetCamera()
 	return _cam;
 }
 
-Ray* RayCaster::CastRayThroughPixel(int i, int j)
+Ray& RayCaster::CastRayThroughPixel(int i, int j)
 {
-	return &_rays[j * _width + i];
+	return _rays[j * _width + i];
 }

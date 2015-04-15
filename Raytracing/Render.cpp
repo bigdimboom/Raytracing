@@ -34,14 +34,14 @@ void Render::InitScene()
 	++i;
 	//A Sphere
 	_scene.AddShape(new Sphere(point3(2.0f, -0.8f, -3.8f), 2.5f));
-	_scene.GetShape(i)->GetMaterial()->SetReflection(0.6f);
-	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.8f);
+	_scene.GetShape(i)->GetMaterial()->SetReflection(0.8f);
+	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.3f);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.7f, 0.7f, 0.7f, 1.0f));
 	++i;
 	//Sphere 2
 	_scene.AddShape(new Sphere(point3(-3.5f, -0.5f, -6.0f), 1.5f));
-	_scene.GetShape(i)->GetMaterial()->SetReflection(0.6f);
-	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.8f);
+	_scene.GetShape(i)->GetMaterial()->SetReflection(0.9f);
+	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.1f);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.7f, 0.7f, 0.7f, 1.0f));
 	++i;
 
@@ -91,14 +91,15 @@ void Render::Generate()
 	{
 		for (int x = 0; x < _width; ++x)
 		{
-			_pixels[y * _width + x] = RayTracer(_rayCaster->CastRayThroughPixel(x, y));
+			_pixels[y * _width + x] = RayTracer(_rayCaster->CastRayThroughPixel(x, y), RECURSION_NUM);
 		}
 	}
 }
 
-color4 Render::RayTracer(Ray* ray)
+color4 Render::RayTracer(Ray& ray, int depth)
 {
 	Shape* retShape = nullptr;
+
 	color4 retColor = color4(0.0f, 0.0f, 0.0f, 1.0);
 
 	float dist = INFINITY_FAR;
@@ -109,7 +110,7 @@ color4 Render::RayTracer(Ray* ray)
 		Shape* tmpShape = _scene.GetShape(i);
 		float tmp_dist = 0.0f;
 
-		if (tmpShape->IsIntersect(*ray, tmp_dist))
+		if (tmpShape->IsIntersect(ray, tmp_dist))
 		{
 			if (tmp_dist < dist)
 			{
@@ -132,11 +133,11 @@ color4 Render::RayTracer(Ray* ray)
 	else
 	{
 		//Shooting the secondary ray from the first touching point
-		point3 pt = ray->GetDestination(dist);
+		point3 pt = ray.GetDestination(dist);
 
 		for (uint i = 0; i < _scene.GetNumOfShapes(); ++i)
 		{
-			//Find the light
+			//Find the light-diffuse
 			Shape* tmp = _scene.GetShape(i);
 			if (tmp->IsLight() && tmp->GetType() == SHAPE_SPHERE)
 			{
@@ -154,6 +155,18 @@ color4 Render::RayTracer(Ray* ray)
 							s->GetMaterial()->GetBaseColor();
 					}
 				}
+			}
+		}
+		// calculate reflection
+		float refl = retShape->GetMaterial()->GetReflection();
+		if (refl > 0.0f)
+		{
+			normal3 N = retShape->GetNormal(pt);
+			point3 rayray = ray.GetDirection() - 2.0f * glm::dot(ray.GetDirection(), N) * N;
+			if (depth)
+			{
+				color4 getColor = RayTracer(Ray(pt + rayray * THRESHOLD, rayray), depth - 1);
+				retColor += refl * getColor * retShape->GetMaterial()->GetBaseColor();
 			}
 		}
 	}

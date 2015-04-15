@@ -9,6 +9,8 @@
 
 
 #define INFINITY_FAR 9999999.0f
+#define RECURSION_NUM 4
+#define THRESHOLD 0.0001f
 
 class Render
 {
@@ -19,9 +21,8 @@ public:
 	void InitScene();
 	void Generate();
 	
-	color4 RayTracer(Ray* ray);
+	color4 RayTracer(Ray& ray, int depth);
 	void Draw();
-
 
 	RayCaster* GetRayCaster();
 	Scene& GetScene();
