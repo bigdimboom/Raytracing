@@ -27,33 +27,33 @@ void Render::InitScene()
 	int i = 0;
 
 	//Ground
-	_scene.AddShape(new Plane(point3(0.0f, 1.0f, 0.0f), 400.0f));
+	_scene.AddShape(new Plane(point3(0.0f, 1.0f, 0.0f), 3.0f));
 	_scene.GetShape(i)->GetMaterial()->SetReflection(0.0f);
 	_scene.GetShape(i)->GetMaterial()->SetDiffuse(1.0f);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.4f, 0.3f, 0.3f, 1.0f));
 	++i;
 	//A Sphere
-	_scene.AddShape(new Sphere(point3(-5.0f, 0.0f, -3.0f), 50.5f));
+	_scene.AddShape(new Sphere(point3(2.0f, -0.8f, -3.8f), 2.5f));
 	_scene.GetShape(i)->GetMaterial()->SetReflection(0.6f);
 	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.8f);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.7f, 0.7f, 0.7f, 1.0f));
 	++i;
 	//Sphere 2
-	_scene.AddShape(new Sphere(point3(-50.0f, -5.0f, -7.0f), 20.5f));
+	_scene.AddShape(new Sphere(point3(-3.5f, -0.5f, -6.0f), 1.5f));
 	_scene.GetShape(i)->GetMaterial()->SetReflection(0.6f);
 	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.8f);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.7f, 0.7f, 0.7f, 1.0f));
 	++i;
 
 	//light 1
-	_scene.AddShape(new Sphere(point3(50.0f, 140.0f, -10.0f), 0.1f));
+	_scene.AddShape(new Sphere(point3(0.0f, 5.0f, -4.0f), 0.1f));
 	_scene.GetShape(i)->SetLight(true);
-	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.6f, 0.6f, 0.6f, 1.0f));
+	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.6f, 0.3f, 0.2f, 1.0f));
 	++i;
 	//Light 2
-	_scene.AddShape(new Sphere(point3(0.0f, 150.0f, -10.0f), 0.1f));
+	_scene.AddShape(new Sphere(point3(-3.0f, 5.0f, -4.0f), 0.1f));
 	_scene.GetShape(i)->SetLight(true);
-	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.7f, 0.7f, 0.9f, 1.0f));
+	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.45f, 0.8f, 0.9f, 1.0f));
 	++i;
 
 }
@@ -92,10 +92,6 @@ void Render::Generate()
 		for (int x = 0; x < _width; ++x)
 		{
 			_pixels[y * _width + x] = RayTracer(_rayCaster->CastRayThroughPixel(x, y));
-			//if (_pixels[y * _width + x] != point4(0.0f, 0.0f, 0.0f, 1.0f))
-			//{
-			//	std::cout << ++count << std::endl;
-			//}
 		}
 	}
 }
@@ -131,6 +127,7 @@ color4 Render::RayTracer(Ray* ray)
 	if (retShape->IsLight())
 	{
 		return retShape->GetMaterial()->GetBaseColor();
+		//return color4(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 	else
 	{

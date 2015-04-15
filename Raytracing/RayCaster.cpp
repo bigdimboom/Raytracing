@@ -44,7 +44,7 @@ void RayCaster::_ConstructNearClip()
 			//	((float)j / (float)_width + 0.5f) * 2.0f * near * tanTheta * right +
 			//	((float)i / (float)_height + 0.5f) * 2.0f * near * tanFi * up;
 
-			_nearClip[i * _width + j] = point3(-400.0f + j, -300.0f + i, 0.0f);
+			_nearClip[i * _width + j] = point3((-400.0f + j) * 0.01, (-300.0f + i) * 0.01, 0.0f);
 		}
 	}
 }
