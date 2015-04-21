@@ -7,6 +7,7 @@
 #define SHAPE_UNDEFINED "undefined"
 #define SHAPE_PLANE "PLANE"
 #define SHAPE_SPHERE "SPHERE"
+#define SHAPE_CUBE "CUBE"
 
 class Shape
 {

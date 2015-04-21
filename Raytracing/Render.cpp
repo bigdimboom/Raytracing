@@ -26,24 +26,27 @@ void Render::InitScene()
 {
 	int i = 0;
 
+	//std::cout << glm::to_string(glm::cross(point3(1.0f,0.0f, 0.0f), point3(0.0f, 0.0f, 1.0f))) << std::endl;
+
 	//Ground
-	_scene.AddShape(new Plane(point3(0.0f, 1.0f, 0.0f), 4.0f));
+	_scene.AddShape(new Plane(point3(0.0f, 1.0f, 0.0f), 4.8f));
 	_scene.GetShape(i)->GetMaterial()->SetReflection(0.0f);
 	_scene.GetShape(i)->GetMaterial()->SetDiffuse(1.0f);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.3f, 0.25f, 0.25f, 1.0f));
 	++i;
-	////Wall
-	_scene.AddShape(new Plane(point3(0.1f, 0.0f, 1.0f), 10.0f));
-	_scene.GetShape(i)->GetMaterial()->SetReflection(0.0f);
+	//left
+	_scene.AddShape(new Plane(point3(1.0f, 0.0f, 0.0f), 10.8f));
+	_scene.GetShape(i)->GetMaterial()->SetReflection(0.1f);
 	_scene.GetShape(i)->GetMaterial()->SetDiffuse(1.0f);
-	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.2f, 0.8f, 0.6f, 1.0f));
+	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.0f, 0.25f, 1.0f, 1.0f));
 	++i;
-	////Wall left
-	_scene.AddShape(new Plane(point3(1.0f, 0.0f, 0.0f), 10.0f));
-	_scene.GetShape(i)->GetMaterial()->SetReflection(0.0f);
+	//back
+	_scene.AddShape(new Plane(point3(0.0f, 0.0f, 1.0f), 15.0f));
+	_scene.GetShape(i)->GetMaterial()->SetReflection(0.1f);
 	_scene.GetShape(i)->GetMaterial()->SetDiffuse(1.0f);
-	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.0f, 0.8f, 0.4f, 1.0f));
+	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.3f, 0.25f, 0.25f, 1.0f));
 	++i;
+
 	//A Sphere
 	_scene.AddShape(new Sphere(point3(2.0f, -0.8f, -3.8f), 2.5f));
 	_scene.GetShape(i)->GetMaterial()->SetReflection(0.6f);
@@ -52,9 +55,9 @@ void Render::InitScene()
 	++i;
 	//Sphere 2
 	_scene.AddShape(new Sphere(point3(-4.0f, -0.5f, -5.0f), 2.0f));
-	_scene.GetShape(i)->GetMaterial()->SetReflection(0.9f);
-	_scene.GetShape(i)->GetMaterial()->SetDiffuse(0.1f);
-	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.7f, 0.6f, 0.7f, 1.0f));
+	_scene.GetShape(i)->GetMaterial()->SetReflection(1.0f);
+	_scene.GetShape(i)->GetMaterial()->SetDiffuse(1.0f);
+	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.5f, 0.6f, 0.7f, 1.0f));
 	++i;
 	//light 1
 	_scene.AddShape(new Sphere(point3(4.5f, 5.8f, 0.0f), 0.15f));
@@ -62,15 +65,10 @@ void Render::InitScene()
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.9f, 0.9f, 0.2f, 1.0f));
 	++i;
 	//Light 2
-	_scene.AddShape(new Sphere(point3(-3.0f, 4.8f, -1.0f), 0.1f));
+	_scene.AddShape(new Sphere(point3(-2.0f, 4.8f, -3.0f), 0.1f));
 	_scene.GetShape(i)->SetLight(true);
 	_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.85f, 0.8f, 0.9f, 1.0f));
 	++i;
-	//////Light 3
-	//_scene.AddShape(new Sphere(point3(0.0f, 3.8f, 10.0f), 0.1f));
-	//_scene.GetShape(i)->SetLight(true);
-	//_scene.GetShape(i)->GetMaterial()->SetBaseColor(color4(0.85f, 0.8f, 0.9f, 1.0f));
-	//++i;
 }
 
 void Render::Draw()

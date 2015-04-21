@@ -9,8 +9,8 @@
 
 
 #define INFINITY_FAR 9999999.0f
-#define RECURSION_NUM 5
-#define THRESHOLD 0.00001f
+#define RECURSION_NUM 3
+#define THRESHOLD 0.001f
 
 class Render
 {
