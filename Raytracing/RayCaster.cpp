@@ -26,15 +26,15 @@ void RayCaster::Init()
 
 void RayCaster::_ConstructNearClip()
 {
-	point3 up = _cam->GetUp();
-	point3 right = _cam->GetRight();
-	float near = _cam->GetNear();
-	point3 camPos = _cam->GetPosition();
+	//point3 up = _cam->GetUp();
+	//point3 right = _cam->GetRight();
+	//float near = _cam->GetNear();
+	//point3 camPos = _cam->GetPosition();
 
-	float tanTheta = (_width + 1.0f) / (2.0f * near); //width
-	float tanFi = (_height + 1.0f) / (2.0f * near); //height
+	//float tanTheta = (_width + 1.0f) / (2.0f * near); //width
+	//float tanFi = (_height + 1.0f) / (2.0f * near); //height
 
-	point3 p1 = camPos + near * _cam->GetFront() - near * tanTheta * right - near * tanFi * up;
+	//point3 p1 = camPos + near * _cam->GetFront() - near * tanTheta * right - near * tanFi * up;
 
 	for (int i = 0; i < _height; ++i)
 	{

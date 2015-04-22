@@ -18,11 +18,13 @@
 class Render
 {
 public:
-	__host__ __device__ Render();
-	__host__ __device__ ~Render();
+	Render();
+	~Render();
 	void Init(point3 camPos, point3 front, float near, float far, int width, int height);
 	void InitScene();
 	void Generate();
+
+	__global__ void GenerateOnGPU(Shape* shapes, int numOfShape, Ray* rays, point4* imgResult, int width, int height);
 	
 	color4 RayTracer(Ray& ray, int depth);
 	void Draw();
@@ -33,15 +35,15 @@ public:
 
 public:
 	static bool IsCudaDevice();
+
+
 private:
 	RayCaster* _rayCaster;
 	Scene _scene;
 	color4* _pixels;
 	int _width, _height;
 
-	//Shape* _deviceShapes;
+	std::vector<Shape*> _shapesOnDev;
+	Ray* _raysOnDev;
 	//Ray* _deviceRays;
-
-	thrust::device_vector<Shape*> _shapesOnDevice;
-	//thrust::device_vector<Ray> _raysOnDevice;
 };

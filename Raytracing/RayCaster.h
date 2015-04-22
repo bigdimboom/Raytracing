@@ -13,6 +13,7 @@ public:
 	Camera* GetCamera();
 
 	inline int RaySize() const { return _width * _height; }
+	Ray* GetRayVector() const { return _rays; }
 
 private:
 	void _ConstructRays();

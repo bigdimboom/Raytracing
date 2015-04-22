@@ -1,10 +1,22 @@
 #include "Render.h"
 
+
+void CudaCheckError(cudaError_t code)
+{
+	if (code != cudaSuccess)
+	{
+		fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(code), __FILE__, __LINE__);
+		if (abort) exit(code);
+	}
+}
+
+
 Render::Render()
 	:_rayCaster(nullptr),
 	_pixels(nullptr),
 	_width(0),
-	_height(0)
+	_height(0),
+	_raysOnDev(nullptr)
 {
 }
 
@@ -111,24 +123,35 @@ void Render::Generate()
 
 	if (IsCudaDevice())
 	{
-		uint sizeInBytes = 0;
 		//count bytes size of the Shapes in the scene
 		for (uint i = 0; i < _scene.GetNumOfShapes(); ++i)
 		{
 			if (_scene.GetShape(i)->GetType() == Shape::SHAPE_SPHERE)
 			{
-				sizeInBytes += sizeof(Sphere);
+				Sphere* s;
+				CudaCheckError(cudaMalloc((void**)&s, sizeof(Sphere)));
+				CudaCheckError(cudaMemcpy(s, _scene.GetShape(i), sizeof(Sphere), cudaMemcpyHostToDevice));
+				_shapesOnDev.push_back(s);
+				//Dosomething
 			}
 			else if (_scene.GetShape(i)->GetType() == Shape::SHAPE_PLANE)
 			{
-				sizeInBytes += sizeof(Plane);
+				Plane* p;
+				CudaCheckError(cudaMalloc((void**)&p, sizeof(Plane)));
+				CudaCheckError(cudaMemcpy(p, _scene.GetShape(i), sizeof(Plane), cudaMemcpyHostToDevice));
+				//Do something
+				_shapesOnDev.push_back(p);
 			}
 			else
 			{
 				std::cout << " Error Converting types\n";
 			}
 		}
+		//Copy Rays to device
+		CudaCheckError(cudaMalloc((void**)&_raysOnDev, sizeof(Ray) * _rayCaster->RaySize()));
+		CudaCheckError(cudaMemcpy(_raysOnDev, _rayCaster->GetRayVector(), _rayCaster->RaySize() * sizeof(Ray), cudaMemcpyHostToDevice));
 
+		//Global function launcher
 
 		return;
 	}
