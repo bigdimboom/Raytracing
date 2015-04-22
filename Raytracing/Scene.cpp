@@ -22,7 +22,7 @@ void Scene::AddShape(Shape* shape)
 
 uint Scene::GetNumOfShapes()
 {
-	return _shapes.size();
+	return (uint)_shapes.size();
 }
 
 

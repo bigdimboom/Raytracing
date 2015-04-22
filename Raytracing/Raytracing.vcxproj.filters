@@ -25,6 +25,9 @@
     <Filter Include="Timer">
       <UniqueIdentifier>{b228917a-dbaa-4e33-81f8-5835d595b94a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Cuda">
+      <UniqueIdentifier>{53e3b410-c957-49f2-b713-ff7ba6fb1476}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -55,11 +58,11 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Render.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="MyTimer.cpp">
       <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

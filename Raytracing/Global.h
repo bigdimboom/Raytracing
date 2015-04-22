@@ -19,6 +19,9 @@
 
 #include <memory>
 
+#include <cuda.h>
+#include <cuda_runtime.h>
+
 typedef glm::vec2 point2;
 
 typedef glm::vec3 point3;

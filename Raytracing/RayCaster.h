@@ -11,6 +11,9 @@ public:
 	void Init();
 	Ray& CastRayThroughPixel(int i, int j);
 	Camera* GetCamera();
+
+	inline int RaySize() const { return _width * _height; }
+
 private:
 	void _ConstructRays();
 	void _ConstructNearClip();

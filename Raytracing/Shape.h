@@ -4,10 +4,10 @@
 #include "Material.h"
 
 
-#define SHAPE_UNDEFINED "undefined"
-#define SHAPE_PLANE "PLANE"
-#define SHAPE_SPHERE "SPHERE"
-#define SHAPE_CUBE "CUBE"
+//#define SHAPE_UNDEFINED "undefined"
+//#define SHAPE_PLANE "PLANE"
+//#define SHAPE_SPHERE "SPHERE"
+//#define SHAPE_CUBE "CUBE"
 
 class Shape
 {
@@ -32,7 +32,18 @@ public:
 
 	virtual void Update() = 0;
 
-	inline const std::string GetType() const { assert(type != SHAPE_UNDEFINED); return type; }
+	inline const int GetType() const { assert(type != SHAPE_UNDEFINED); return type; }
+
+public:
+
+	enum
+	{
+		SHAPE_UNDEFINED = 0,
+		SHAPE_PLANE,
+		SHAPE_SPHERE,
+		SHAPE_CUBE
+	};
+
 
 protected:
 	point3 ApplyMatrixToPoint(const point3& point);
@@ -42,6 +53,6 @@ protected:
 	matrix4 modelMat;
 	bool isLight;
 	Material material;
-	std::string type;
+	int type;
 };
 
